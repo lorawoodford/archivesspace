@@ -1,4 +1,23 @@
+<% pref_include_unpublished = user_prefs['include_unpublished'] %>
+
 <% if user_can?('update_resource_record') %>
+  <% unless content_for?(:exports) %>
+    <% content_for :exports do %>
+      <li class="dropdown-submenu" id="download-marc-dropdown" data-download-marc-url="<%= url_for(:controller => :exports, :action => :download_marc_ao, :id => @archival_object.id, :include_unpublished_marc => "${include_unpublished_marc}")%>">
+        <a href="#" data-toggle="dropdown" class="menu-with-options download-marc-action" title="<%= I18n.t("actions.export_marc") %>"><%= I18n.t("actions.export_marc") %></a>
+        <div class="dropdown-menu" id="form_download_marc">
+          <fieldset>
+            <input type="hidden" name="id", value="<%= @archival_object.id %>" />
+            <label class="checkbox" for="include-unpublished-marc">
+                <input type="checkbox" id="include-unpublished-marc" name="include_unpublished_marc" <% if pref_include_unpublished %> checked="checked" <% end %>/>
+              <%= I18n.t("export_options.include_unpublished") %>&#160;
+            </label>
+          </fieldset>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+
   <%= render_aspace_partial(:partial => '/shared/component_toolbar',
              :locals => {
                :parent_link => {:controller => :resources, :action => :edit, :id => JSONModel(:resource).id_for(@archival_object.resource["ref"]), :anchor => "tree::archival_object_#{@archival_object.id}"},

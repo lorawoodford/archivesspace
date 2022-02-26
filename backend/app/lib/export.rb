@@ -84,6 +84,19 @@ module ExportHelpers
   end
 
 
+  def generate_marc_ao(id, include_unpublished = false)
+    obj = resolve_references(ArchivalObject.to_jsonmodel(id), ['repository', 'linked_agents', 'subjects'])
+
+    opts = {:include_unpublished => include_unpublished}
+
+    ao = JSONModel(:archival_object).new(obj)
+    JSONModel::set_publish_flags!(ao)
+    marc = ASpaceExport.model(:marc21).from_archival_object(ao, opts)
+
+    ASpaceExport::serialize(marc)
+  end
+
+
   def generate_ead(id, include_unpublished, include_daos, use_numbered_c_tags, ead3)
     resolve = ['repository', 'linked_agents', 'subjects', 'digital_object', 'top_container', 'top_container::container_profile']
 

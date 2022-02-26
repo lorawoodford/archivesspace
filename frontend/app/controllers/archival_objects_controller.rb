@@ -6,7 +6,7 @@ class ArchivalObjectsController < ApplicationController
                       "delete_archival_record" => [:delete],
                       "manage_repository" => [:defaults, :update_defaults]
 
-
+  include ExportHelper
 
   def new
     @archival_object = JSONModel(:archival_object).new._always_valid!

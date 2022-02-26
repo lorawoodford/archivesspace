@@ -269,6 +269,23 @@ class ArchivesSpaceService < Sinatra::Base
     xml_response(marc)
   end
 
+  Endpoint.get('/repositories/:repo_id/archival_objects/marc21/:id.xml')
+    .description("Get a MARC 21 representation of an Archival Object")
+    .example("shell") do
+    end
+    .example("python") do
+    end
+    .params(["id", :id],
+            ["repo_id", :repo_id],
+            ["include_unpublished_marc", BooleanParam, "Include unpublished notes", :optional => true])
+    .permissions([:view_repository])
+    .returns([200, "(:archival_object)"]) \
+  do
+
+    marc = generate_marc_ao(params[:id], params[:include_unpublished_marc])
+    xml_response(marc)
+  end
+
   Endpoint.get('/repositories/:repo_id/resources/marc21/:id.:fmt/metadata')
     .description("Get metadata for a MARC21 export")
     .example("shell") do
@@ -307,6 +324,25 @@ class ArchivesSpaceService < Sinatra::Base
   do
     json_response({ 'filename' =>
                     safe_filename(Resource.id_to_identifier(params[:id]), '_marc21.xml'),
+                    'mimetype' => 'application/xml' })
+  end
+
+  Endpoint.get('/repositories/:repo_id/archival_objects/marc21/:id.:fmt/metadata')
+    .description("Get metadata for an Archival Object MARC21 export")
+    .example("shell") do
+    end
+    .example("python") do
+    end
+    .params(["id", :id],
+            ["repo_id", :repo_id],
+            ["include_unpublished_marc", BooleanParam, "Include unpublished notes", :optional => true])
+    .permissions([:view_repository])
+    .returns([200, "The export metadata"]) \
+  do
+    ao = ArchivalObject.to_jsonmodel(params[:id])
+    ao_id = [ao['component_id'], ao['ref_id']].compact.join('_')
+    json_response({ 'filename' =>
+                    safe_filename("#{ao_id}_marc21.xml"),
                     'mimetype' => 'application/xml' })
   end
 

@@ -65,6 +65,7 @@ ArchivesSpace::Application.routes.draw do
     match 'archival_objects/:id/add_children' => 'archival_objects#add_children', :via => [:post]
     match 'archival_objects/:id/publish' => 'archival_objects#publish', :via => [:post]
     match 'archival_objects/:id/unpublish' => 'archival_objects#unpublish', :via => [:post]
+    match 'archival_objects/:id/download_marc_ao' => 'exports#download_marc_ao', :via => [:get]
     match 'archival_objects/:id/accept_children' => 'archival_objects#accept_children', :via => [:post]
     match 'archival_objects/:id/suppress' => 'archival_objects#suppress', :via => [:post]
     match 'archival_objects/:id/unsuppress' => 'archival_objects#unsuppress', :via => [:post]
