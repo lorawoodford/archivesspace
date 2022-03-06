@@ -103,6 +103,11 @@ describe 'Exports controller' do
     expect(last_response.body).to include("<subfield code=\"a\">#{res.id_0}")
   end
 
+  it "lets you export an archival_object in MARC 21" do
+    ao = create(:json_archival_object)
+    get "/repositories/#{$repo_id}/archival_objects/marc21/#{ao.id}.xml"
+    expect(last_response.body).to include("<subfield code=\"a\">#{ao.title}")
+  end
 
   it "lets you export labels for a resource as tab separated values" do
     resource= create(:json_resource)
@@ -191,6 +196,10 @@ describe 'Exports controller' do
     check_metadata("resource_descriptions/#{res}.xml")
     check_metadata("resources/marc21/#{res}.xml")
     check_metadata("resource_labels/#{res}.tsv")
+
+    # archival object exports
+    ao = create(:json_archival_object, :publish => true).id
+    check_metadata("resources/marc21/#{ao}.xml")
 
     # digital object exports
     dig = create(:json_digital_object).id
