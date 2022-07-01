@@ -6,6 +6,7 @@ en:
       search:
         family_name: Primary Name 
         given_name: Rest of Name
+        uri: URI
       actions:
         search: Search
         import: Import

@@ -91,7 +91,7 @@ $(function() {
     dataType: "json",
     type: "GET",
     beforeSubmit: function() {
-      if (!$("#family-name-search-query", $searchForm).val()) {
+      if (!$("#family-name-search-query", $searchForm).val() && !$("#token-search-query", $searchForm).val()) {
           return false;
       }
 

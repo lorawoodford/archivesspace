@@ -68,7 +68,13 @@ class LcnafController < ApplicationController
   private
 
   def do_search(params)
-    searcher.search(params[:family_name], params[:page].to_i, params[:records_per_page].to_i)
+    query = !params[:token].blank? ? tokenize_uri(params[:token]) : params[:family_name]
+    searcher.search(query, params[:page].to_i, params[:records_per_page].to_i)
+  end
+
+
+  def tokenize_uri(token)
+    token.split('/')[-1]
   end
 
 

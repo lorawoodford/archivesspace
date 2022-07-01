@@ -26,7 +26,13 @@
       </fieldset>
     </div>
 
-    <div class='control-group form-group required'> 
+    <div class='control-group form-group conditionally-required'> 
+      <label class='control-label' for="token-search-query"><%= I18n.t("plugins.lcnaf.search.uri") %></label>
+      <div class='controls'> 
+        <input type="text" name="token" class="token-search-query lcnaf-name-input input-large" id="token-search-query"></input>
+      </div>
+    </div>
+    <div class='control-group form-group conditionally-required'> 
       <label class='control-label' for="family-name-search-query"><%= I18n.t("plugins.lcnaf.search.family_name") %></label>
       <div class='controls'> 
         <input type="text" name="family_name" class="family-name-search-query lcnaf-name-input input-large" id="family-name-search-query"></input>
