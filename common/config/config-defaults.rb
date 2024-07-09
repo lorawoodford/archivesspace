@@ -92,7 +92,9 @@ AppConfig[:solr_verify_checksums] = true
 AppConfig[:locale] = :en
 
 # Plug-ins to load. They will load in the order specified
-AppConfig[:plugins] = ['local', 'lcnaf']
+AppConfig[:plugins] = ['local', 'lcnaf', 'caas_aspace_refid'] # caas_aspace_refid
+# refid_rules
+# AppConfig[:refid_rule] = "<%= resource['formatted_id']  %>_ref<%= resource['caas_next_refid'].first['next_refid'].to_s %>"
 
 # The number of concurrent threads available to run background jobs
 # Resist the urge to set this to a big number as it will affect performance

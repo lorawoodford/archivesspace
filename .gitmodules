@@ -4,3 +4,6 @@
 [submodule "plugins/lcnaf"]
 	path = plugins/lcnaf
 	url = https://github.com/archivesspace-plugins/lcnaf
+[submodule "plugins/caas_aspace_refid"]
+	path = plugins/caas_aspace_refid
+	url = https://github.com/lorawoodford/caas_aspace_refid.git
