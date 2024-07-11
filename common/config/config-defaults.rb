@@ -92,8 +92,7 @@ AppConfig[:solr_verify_checksums] = true
 AppConfig[:locale] = :en
 
 # Plug-ins to load. They will load in the order specified
-AppConfig[:plugins] = ['local', 'lcnaf', 'caas_aspace_refid'] # caas_aspace_refid
-AppConfig[:caas_aspace_refid_rule] = "<%= resource['ead_id'] %>_ref<%= generate_ref_id(resource_id) %>"
+AppConfig[:plugins] = ['local', 'lcnaf', 'caas_aspace_refid']
 # refid_rules
 # AppConfig[:refid_rule] = "<%= resource['formatted_id']  %>_ref<%= resource['caas_next_refid'].first['next_refid'].to_s %>"
 
