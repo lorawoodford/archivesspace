@@ -7,3 +7,6 @@
 [submodule "plugins/caas_aspace_refid"]
 	path = plugins/caas_aspace_refid
 	url = https://github.com/lorawoodford/caas_aspace_refid.git
+[submodule "plugins/plugin_examples"]
+	path = plugins/plugin_examples
+	url = https://github.com/lorawoodford/plugin_examples.git
