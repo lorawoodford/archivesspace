@@ -10,3 +10,6 @@
 [submodule "plugins/lassb-ead-exporter"]
 	path = plugins/lassb-ead-exporter
 	url = https://github.com/lorawoodford/lassb-ead-exporter.git
+[submodule "plugins/snac_aspace_plugin"]
+	path = plugins/snac_aspace_plugin
+	url = https://github.com/lorawoodford/snac_aspace_plugin.git
