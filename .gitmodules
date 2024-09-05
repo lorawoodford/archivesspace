@@ -4,9 +4,6 @@
 [submodule "plugins/caas_aspace_refid"]
 	path = plugins/caas_aspace_refid
 	url = https://github.com/lorawoodford/caas_aspace_refid.git
-[submodule "plugins/caas_aspace_ead_export"]
-	path = plugins/caas_aspace_ead_export
-	url = https://github.com/lorawoodford/caas_aspace_ead_export.git
 [submodule "plugins/lassb-ead-exporter"]
 	path = plugins/lassb-ead-exporter
 	url = https://github.com/lorawoodford/lassb-ead-exporter.git
