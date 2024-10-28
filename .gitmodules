@@ -10,3 +10,6 @@
 [submodule "plugins/snac_aspace_plugin"]
 	path = plugins/snac_aspace_plugin
 	url = https://github.com/lorawoodford/snac_aspace_plugin.git
+[submodule "plugins/aspace_content_warnings"]
+	path = plugins/aspace_content_warnings
+	url = https://github.com/Smithsonian/aspace_content_warnings.git
