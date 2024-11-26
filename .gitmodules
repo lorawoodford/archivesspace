@@ -13,3 +13,6 @@
 [submodule "plugins/aspace_content_warnings"]
 	path = plugins/aspace_content_warnings
 	url = https://github.com/Smithsonian/aspace_content_warnings.git
+[submodule "plugins/as_spreadsheet_bulk_updater"]
+	path = plugins/as_spreadsheet_bulk_updater
+	url = https://github.com/Smithsonian/as_spreadsheet_bulk_updater
