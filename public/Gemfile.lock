@@ -284,13 +284,8 @@ GEM
     websocket-driver (0.7.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    write_xlsx (1.01.0)
-      rubyzip (>= 1.0.0)
-      zip-zip
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zip-zip (0.3)
-      rubyzip (>= 1.0.0)
 
 PLATFORMS
   java
@@ -337,7 +332,6 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (= 3.0.4)
-  write_xlsx (= 1.01.0)
 
 BUNDLED WITH
    2.1.4
