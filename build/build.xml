@@ -4,8 +4,8 @@
   <!-- This section contains configuration used by the build tasks -->
 
   <!-- Don't forget to change any jruby versions in any Gemfiles! -->
-  <property name="jruby_url" value="https://repo1.maven.org/maven2/org/jruby/jruby-complete/9.2.20.1/jruby-complete-9.2.20.1.jar" />
-  <property name="jruby_file" value="jruby-complete-9.2.20.1.jar" />
+  <property name="jruby_url" value="file:///Users/Woodfordlj/Documents/jruby-complete-9.2.21.0-SNAPSHOT.jar" />
+  <property name="jruby_file" value="jruby-complete-9.2.21.0-SNAPSHOT.jar" />
   <!-- This needs to match version installed by bundler 2.x: `./build/run bootstrap` -->
   <!-- Then find version at: build/gems/jruby/$version -->
   <property name="jruby_build_version" value="2.5.0" />
@@ -35,7 +35,7 @@
   <property name="aspace.data_directory.test" value="${basedir}/../build/test" />
   <property name="aspace.public_url.test" value="http://127.0.0.1:13001" />
 
-  <property environment="env"/>
+  <property environment="env" />
   <!--
       Extra options for people who like lots of GC detail: -verbose:gc -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime
   -->
@@ -57,7 +57,7 @@
 
   <!-- RUBOCOP -->
   <target name="rubocop" depends="set-classpath, bootstrap-jruby" description="Run rubocop against directory">
-    <property name="build.home" location="."/>
+    <property name="build.home" location="." />
     <property name="correct" value="false" />
     <property name="dir" value="." />
     <condition property="correct-arg" value="--auto-correct" else="">
@@ -69,7 +69,7 @@
       <param name="excluded-gem-groups" value="default" />
     </antcall>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -88,7 +88,7 @@
     <parallel>
       <record name="backend_test_log.out" action="start" />
       <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../backend">
-        <jvmarg line="-Daspace.service=backend -Daspace.config.backend_url=http://localhost:${aspace.backend.port} -Daspace.config.ignore_schema_info_check=true ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true"/>
+        <jvmarg line="-Daspace.service=backend -Daspace.config.backend_url=http://localhost:${aspace.backend.port} -Daspace.config.ignore_schema_info_check=true ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true" />
         <env key="GEM_HOME" value="${gem_home}" />
         <env key="GEM_PATH" value="" />
         <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -105,20 +105,20 @@
   </target>
 
   <target name="backend:doc" depends="set-classpath" description="Generate documentation for endpoints">
-    <property name="match" value=""/>
+    <property name="match" value="" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../backend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
-      <arg line="-Iapp scripts/endpoint_doc.rb"/>
-      <arg value="${match}"/>
+      <arg line="-Iapp scripts/endpoint_doc.rb" />
+      <arg value="${match}" />
     </java>
   </target>
 
   <target name="backend:integration" depends="set-classpath, setup-integration" description="Run the integration test suite">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../backend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -135,28 +135,28 @@
 
   <target name="backend:test" depends="set-classpath, setup-integration" description="Run the unit test suite">
     <dirset id="plugins" dir="../plugins">
-      <include name="**/backend/spec"/>
+      <include name="**/backend/spec" />
     </dirset>
-    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins"/>
+    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins" />
     <antcall target="rspec">
       <param name="dir" value="../backend" />
-      <param name="extra-spec-paths" value="${plugin-spec-dirs}"/>
+      <param name="extra-spec-paths" value="${plugin-spec-dirs}" />
     </antcall>
   </target>
 
   <!-- Run the tests from a plugin directory -->
   <target name="backend:test:plugin" depends="set-classpath, setup-integration" description="Run the unit test suite">
-    <property name="spec" value=""/>
+    <property name="spec" value="" />
     <condition property="example-arg" value="-e &quot;${example}&quot;" else="">
-      <isset property="example"/>
+      <isset property="example" />
     </condition>
     <dirset id="plugins" dir="../..">
-      <include name="backend/spec"/>
+      <include name="backend/spec" />
       <include name="archivesspace/plugins/**/backend/spec" />
     </dirset>
-    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins"/>
+    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../backend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -170,7 +170,7 @@
 
   <target name="backend:war" depends="set-classpath" description="Deploy the backend application as a .war file">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../backend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -189,9 +189,9 @@
       <fileset dir=".." includes="*/.bundle/config" />
     </delete>
     <property name="excluded-gem-groups" value="" />
-    <property name="build.home" location="."/>
+    <property name="build.home" location="." />
     <java classpath="${jruby_file}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -220,14 +220,14 @@
   </target>
 
   <target name="bootstrap-jruby" description="Just jruby and bundler for jobs that do not run the apps">
-    <property name="build.home" location="."/>
-      <delete>
+    <property name="build.home" location="." />
+    <delete>
       <fileset dir="." includes="jruby-complete*.jar" excludes="${jruby_file}" />
     </delete>
     <get src="${jruby_url}" dest="${jruby_file}" skipexisting="true" verbose="true" usetimestamp="true" />
 
     <java classpath="${jruby_file}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -303,7 +303,7 @@
     <mkdir dir="target/archivesspace/locales/public" />
     <mkdir dir="target/archivesspace/solr" />
     <tstamp />
-    <property name="version" value="${DSTAMP}-${TSTAMP}"/>
+    <property name="version" value="${DSTAMP}-${TSTAMP}" />
     <delete file="../common/ARCHIVESSPACE_VERSION" />
     <echo file="../common/ARCHIVESSPACE_VERSION">${version}</echo>
     <echo>Building version: ${version}</echo>
@@ -360,25 +360,25 @@
       <fileset dir="../docs" />
     </copy>
     <copy todir="target/archivesspace/plugins/newrelic">
-      <fileset dir="../plugins/newrelic"/>
+      <fileset dir="../plugins/newrelic" />
     </copy>
     <copy todir="target/archivesspace/plugins/cat_in_a_box">
-      <fileset dir="../plugins/cat_in_a_box"/>
+      <fileset dir="../plugins/cat_in_a_box" />
     </copy>
     <copy todir="target/archivesspace/plugins/refid_rules">
-      <fileset dir="../plugins/refid_rules"/>
+      <fileset dir="../plugins/refid_rules" />
     </copy>
     <copy todir="target/archivesspace/plugins/lcnaf">
-      <fileset dir="../plugins/lcnaf"/>
+      <fileset dir="../plugins/lcnaf" />
     </copy>
     <copy todir="target/archivesspace/solr">
       <fileset dir="../solr" excludes=".dockerignore,Dockerfile,delete*" />
     </copy>
     <copy todir="target/archivesspace/stylesheets">
-      <fileset dir="../stylesheets"/>
+      <fileset dir="../stylesheets" />
     </copy>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -410,18 +410,18 @@
 
   <!-- BUNDLER -->
   <target name="bundler" depends="set-classpath" description="Run bundler against a gemfile">
-    <property name="build.home" location="."/>
+    <property name="build.home" location="." />
     <property name="excluded-gem-groups" value="" />
     <property name="included-gem-groups" value="" />
     <condition property="bundle-without-option" value="--without '${excluded-gem-groups}'" else="">
-      <matches pattern="^.+$" string="${excluded-gem-groups}"/>
+      <matches pattern="^.+$" string="${excluded-gem-groups}" />
     </condition>
     <condition property="bundle-with-option" value="--with '${included-gem-groups}'" else="">
-      <matches pattern="^.+$" string="${included-gem-groups}"/>
+      <matches pattern="^.+$" string="${included-gem-groups}" />
     </condition>
     <echo message="Fetching gems for ${gemfile}" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -432,30 +432,30 @@
 
   <!-- RSPEC -->
   <target name="rspec" depends="set-classpath" description="Run rspec">
-    <property name="dir" value="../build/null"/><!--must be set by caller -->
+    <property name="dir" value="../build/null" /><!--must be set by caller -->
     <property name="extra-spec-paths" value="" />
     <condition property="spec-arg" value="spec/${spec}" else="spec">
-        <isset property="spec"/>
+      <isset property="spec" />
     </condition>
     <condition property="example-arg" value="-e &quot;${example}&quot;" else="">
-      <isset property="example"/>
+      <isset property="example" />
     </condition>
     <condition property="tag-arg" value="--tag &quot;${tag}&quot;" else="">
-      <isset property="tag"/>
+      <isset property="tag" />
     </condition>
     <condition property="order-arg" value="--order &quot;${tag}&quot;" else="--order rand:1">
-      <isset property="order"/>
+      <isset property="order" />
     </condition>
     <condition property="pattern-arg" value="-P &quot;${pattern}&quot;" else="">
-      <isset property="pattern"/>
+      <isset property="pattern" />
     </condition>
     <condition property="test-server-url-arg" value="${test-server-url}" else="">
-      <isset property="test-server-url"/>
+      <isset property="test-server-url" />
     </condition>
 
     <echo message="Running rspec" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="${dir}">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="COVERAGE_REPORTS" value="${COVERAGE_REPORTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
@@ -471,7 +471,7 @@
   <!-- COMMON -->
   <target name="common:test" depends="set-classpath" description="Run the unit test suite for common">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../common">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -501,7 +501,7 @@
   <!-- DATABASE -->
   <target name="db:migrate" depends="set-classpath" description="Run migrations against the database configured in config/config.rb">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -512,7 +512,7 @@
 
   <target name="db:migrate:test" depends="set-classpath" description="Run migrations against the test database">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -524,7 +524,7 @@
   <target name="db:nuke" depends="set-classpath" description="Delete database and shared storage directory">
     <delete dir="${env.APPCONFIG_DATA_DIRECTORY}/shared" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -536,7 +536,7 @@
   <target name="db:nuke:test" depends="set-classpath" description="Delete the test database and shared storage directory">
     <delete dir="${env.ASPACE_TEST_DATA_DIRECTORY}/shared" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -561,14 +561,14 @@
 
   <target name="doc:yardoc" depends="set-classpath" description="Run the yardoc command">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="..">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
       <arg line="build/${jruby_build_bin_path}/yardoc" />
     </java>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="..">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -577,9 +577,9 @@
   </target>
 
   <target name="doc:release_notes" depends="set-classpath, bootstrap-jruby" description="Generate markdown for API documentation">
-    <property name="current_tag" value=""/>
+    <property name="current_tag" value="" />
     <property name="outfile" value="RELEASE_NOTES_${current_tag}.md" />
-    <property name="token" value=""/>
+    <property name="token" value="" />
     <property name="gh_user" value="archivesspace" />
     <antcall target="bundler">
       <param name="gemfile" value="../Gemfile" />
@@ -604,7 +604,7 @@
   <!-- INDEXER -->
   <target name="indexer" depends="set-classpath" description="Run the search indexer">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../indexer">
-      <jvmarg line="-Daspace.service=indexer -Daspace.config.backend_url=http://localhost:${aspace.backend.port}/ ${default_java_options} ${env.JAVA_OPTS}  -Djruby.debug.fullTrace=true"/>
+      <jvmarg line="-Daspace.service=indexer -Daspace.config.backend_url=http://localhost:${aspace.backend.port}/ ${default_java_options} ${env.JAVA_OPTS}  -Djruby.debug.fullTrace=true" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -620,9 +620,9 @@
   </target>
 
   <target name="indexer:test" depends="set-classpath" description="Run the unit test suite for the indexer">
-    <property name="spec" value=""/>
+    <property name="spec" value="" />
     <condition property="example-arg" value="-e &quot;${example}&quot;" else="">
-      <isset property="example"/>
+      <isset property="example" />
     </condition>
     <antcall target="rspec">
       <param name="dir" value="../indexer" />
@@ -631,7 +631,7 @@
 
   <target name="indexer:war" depends="set-classpath" description="Deploy the indexer application as a .war file">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../indexer">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -642,7 +642,7 @@
   <!-- OAI -->
   <target name="oai:war" depends="set-classpath" description="Deploy the OAI application as a .war file">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../oai">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -666,7 +666,7 @@
 
   <target name="frontend:console" depends="set-classpath" description="Run the rails console">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../frontend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -685,7 +685,7 @@
     </condition>
     <record name="frontend_test_log.out" action="start" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../frontend">
-      <jvmarg line="-Daspace.service=frontend -Daspace.config.backend_url=http://localhost:${aspace.backend.port} ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true"/>
+      <jvmarg line="-Daspace.service=frontend -Daspace.config.backend_url=http://localhost:${aspace.backend.port} ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="RAILS_ENV" value="${rails.env}" />
@@ -704,19 +704,19 @@
 
   <target name="frontend:selenium" depends="set-classpath, frontend:clean, setup-integration" description="Run the Selenium tests">
     <dirset id="plugins" dir="../plugins">
-      <include name="**/selenium"/>
+      <include name="**/selenium" />
     </dirset>
-    <pathconvert pathsep=" " property="plugin-selenium-dirs" refid="plugins"/>
+    <pathconvert pathsep=" " property="plugin-selenium-dirs" refid="plugins" />
     <antcall target="rspec">
       <param name="dir" value="../frontend" />
       <param name="spec" value="selenium/spec" />
       <param name="order" value="defined" />
-      <param name="extra-spec-paths" value="${plugin-selenium-dirs}"/>
+      <param name="extra-spec-paths" value="${plugin-selenium-dirs}" />
     </antcall>
   </target>
 
   <target name="frontend:test" depends="set-classpath, frontend:clean, setup-integration" description="Run the non-Selenium unit test suite">
-    <property name="tag" value="~db"/>
+    <property name="tag" value="~db" />
     <antcall target="rspec">
       <param name="dir" value="../frontend" />
       <param name="pattern" value="spec/*/*_spec.rb" />
@@ -725,17 +725,16 @@
   </target>
 
   <target name="frontend:test:plugin" depends="set-classpath, setup-integration" description="Run the unit test suite">
-    <property name="spec" value=""/>
+    <property name="spec" value="" />
     <condition property="example-arg" value="-e &quot;${example}&quot;" else="">
-      <isset property="example"/>
+      <isset property="example" />
     </condition>
     <dirset id="plugins" dir="../..">
-      <include name="frontend/spec"/>gml
-      <include name="archivesspace/plugins/**/frontend/spec"/>
+      <include name="frontend/spec" />gml <include name="archivesspace/plugins/**/frontend/spec" />
     </dirset>
-    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins"/>
+    <pathconvert pathsep=" " property="plugin-spec-dirs" refid="plugins" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../frontend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -758,7 +757,7 @@
       <arg line="-S rake assets:precompile --trace" />
     </java>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../frontend">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -802,7 +801,7 @@
 
   <target name="public:devserver" depends="set-classpath, public:clean, public:copy-shared-resources" description="Start an instance of the ArchivesSpacePublic development server">
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../public">
-      <jvmarg line="-Daspace.service=public -Daspace.config.backend_url=http://localhost:${aspace.backend.port}/ -Daspace.config.public_url=http://localhost:${aspace.public.port}/ ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true"/>
+      <jvmarg line="-Daspace.service=public -Daspace.config.backend_url=http://localhost:${aspace.backend.port}/ -Daspace.config.public_url=http://localhost:${aspace.public.port}/ ${default_java_options} ${env.JAVA_OPTS} -Djruby.debug.fullTrace=true" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -818,7 +817,7 @@
   </target>
 
   <target name="public:test" depends="set-classpath, setup-integration, public:copy-shared-resources" description="Run the unit test suite">
-    <property name="tag" value="~db"/>
+    <property name="tag" value="~db" />
     <antcall target="rspec">
       <param name="dir" value="../public" />
       <param name="tag" value="${tag}" />
@@ -838,7 +837,7 @@
       <arg line="-S rake assets:precompile --trace" />
     </java>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../public">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="RAILS_ENV" value="production" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
@@ -862,7 +861,7 @@
 
   <target name="solr:reset" description="Delete all documents from Solr">
     <exec dir="${basedir}" executable="bash" newenvironment="false" failonerror="true">
-      <arg line="../solr/delete.sh ${env.APPCONFIG_SOLR_URL}"/>
+      <arg line="../solr/delete.sh ${env.APPCONFIG_SOLR_URL}" />
     </exec>
     <delete dir="${env.APPCONFIG_DATA_DIRECTORY}/indexer_state" />
     <delete dir="${env.APPCONFIG_DATA_DIRECTORY}/indexer_pui_state" />
@@ -870,19 +869,19 @@
 
   <target name="solr:reset:test" description="Delete all documents from Solr">
     <exec dir="${basedir}" executable="bash" newenvironment="false" failonerror="true">
-      <arg line="../solr/delete.sh ${env.ASPACE_TEST_SOLR_URL}"/>
+      <arg line="../solr/delete.sh ${env.ASPACE_TEST_SOLR_URL}" />
     </exec>
     <delete dir="${env.ASPACE_TEST_DATA_DIRECTORY}/indexer_state" />
     <delete dir="${env.ASPACE_TEST_DATA_DIRECTORY}/indexer_pui_state" />
   </target>
 
-    <!-- THOR -->
+  <!-- THOR -->
   <target name="thor" depends="set-classpath, bootstrap-jruby" description="Run project-level thor tasks">
-    <property name="build.home" location="."/>
+    <property name="build.home" location="." />
     <property name="task" value="list" />
     <property name="task_args" value="" />
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
@@ -894,9 +893,9 @@
     </java>
   </target>
 
-      <!-- RAKE -->
+  <!-- RAKE -->
   <target name="rake" depends="set-classpath, bootstrap-jruby" description="Run project-level rake tasks">
-    <property name="build.home" location="."/>
+    <property name="build.home" location="." />
     <property name="task" value="--tasks" />
 
     <antcall target="bundler">
@@ -904,7 +903,7 @@
       <param name="included-gem-groups" value="thor default" />
     </antcall>
     <java classpath="${jruby_classpath}" classname="org.jruby.Main" fork="true" failonerror="true" dir="../">
-      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}"/>
+      <jvmarg line="${default_java_options} ${env.JAVA_OPTS}" />
       <env key="GEM_HOME" value="${gem_home}" />
       <env key="GEM_PATH" value="" />
       <env key="BUNDLE_PATH" value="${gem_home}" />
