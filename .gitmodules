@@ -4,3 +4,21 @@
 [submodule "plugins/lcnaf"]
 	path = plugins/lcnaf
 	url = https://github.com/archivesspace-plugins/lcnaf
+[submodule "plugins/lassb-aspace-overrides"]
+	path = plugins/lassb-aspace-overrides
+	url = https://github.com/Smithsonian/lassb-aspace-overrides.git
+[submodule "plugins/local"]
+	path = plugins/local
+	url = https://github.com/Smithsonian/caas_aspace_local.git
+[submodule "plugins/caas_aspace_refid"]
+	path = plugins/caas_aspace_refid
+	url = https://github.com/Smithsonian/caas_aspace_refid.git
+[submodule "plugins/caas_aspace_sova_button"]
+	path = plugins/caas_aspace_sova_button
+	url = https://github.com/Smithsonian/caas_aspace_sova_button.git
+[submodule "plugins/lassb-ead-exporter"]
+	path = plugins/lassb-ead-exporter
+	url = https://github.com/Smithsonian/lassb-ead-exporter.git
+[submodule "plugins/archivesspace-delete-safety-plugin"]
+	path = plugins/archivesspace-delete-safety-plugin
+	url = https://github.com/trevorthornton/archivesspace-delete-safety-plugin.git
