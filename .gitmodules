@@ -16,3 +16,6 @@
 [submodule "plugins/as_spreadsheet_bulk_updater"]
 	path = plugins/as_spreadsheet_bulk_updater
 	url = https://github.com/Smithsonian/as_spreadsheet_bulk_updater
+[submodule "plugins/local"]
+	path = plugins/local
+	url = https://github.com/Smithsonian/caas_aspace_local.git
