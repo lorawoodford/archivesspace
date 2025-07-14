@@ -22,3 +22,6 @@
 [submodule "plugins/archivesspace-delete-safety-plugin"]
 	path = plugins/archivesspace-delete-safety-plugin
 	url = https://github.com/trevorthornton/archivesspace-delete-safety-plugin.git
+[submodule "plugins/user_defined_fields"]
+	path = plugins/user_defined_fields
+	url = https://github.com/Smithsonian/caas_user_defined_fields.git
