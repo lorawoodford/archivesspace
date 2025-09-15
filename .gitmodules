@@ -25,3 +25,6 @@
 [submodule "plugins/user_defined_fields"]
 	path = plugins/user_defined_fields
 	url = https://github.com/Smithsonian/caas_user_defined_fields.git
+[submodule "plugins/temp_header"]
+	path = plugins/temp_header
+	url = https://github.com/lorawoodford/temp_header.git
