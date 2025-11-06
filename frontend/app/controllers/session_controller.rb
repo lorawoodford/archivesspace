@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
 
-  set_access_control  :public => [:login, :token_login, :logout, :check_session, :has_session, :login_inline],
+  set_access_control  :public => [:login, :token_login, :logout, :check_session, :check_pui_session, :has_session, :login_inline],
                       "become_user" => [:select_user, :become_user]
 
 
@@ -54,6 +54,15 @@ class SessionController < ApplicationController
       render json: access_info
     else
       render json: { can_access: false, mode: nil }
+    end
+  end
+
+  def check_pui_session
+    response.headers['Access-Control-Allow-Origin'] = AppConfig[:public_proxy_url]
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+
+    if response.body
+      render json: { username: session[:user], view_pui: user_can_view_pui? }
     end
   end
 
@@ -121,5 +130,9 @@ class SessionController < ApplicationController
       can_access: can_edit || can_view,
       mode: mode
     }
+  end
+
+  def user_can_view_pui?
+    user_can?('update_accession_record')
   end
 end
