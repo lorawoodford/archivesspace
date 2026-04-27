@@ -1162,6 +1162,39 @@ it:
       altformavail: Esistenza e ubicazione delle copie
       arrangement: Disposizione
       bibliography: Bibliografia
+      bioghist: Biografico/Storico
+      contact_note: Nota di contatto
+      custodhist: Storia della custodia
+      dimensions: Dimensioni
+      edition: Edizione
+      extent: Estensione
+      fileplan: Piano di file
+      general_context: Contesto generale
+      index: Indice
+      inscription: Iscrizione
+      langmaterial: Linguaggio dei materiali
+      legal_status: status giuridico
+      legalstatus: status giuridico
+      mandate: Mandato
+      materialspec: Dettagli specifici dei materiali
+      note: Nota generale
+      note_bibliography: Bibliografia
+      odd: Generale
+      originalsloc: Esistenza e ubicazione degli originali
+      otherfindaid: Altri strumenti di consultazione
+      physdesc: Descrizione fisica
+      physfacet: Aspetto fisico
+      physloc: Posizione fisica
+      phystech: Caratteristiche fisiche e requisiti tecnici
+      prefercite: Citazione preferita
+      processinfo: Informazioni di registrazione
+      relatedmaterial: Materiali correlati
+      rights_statement: Diritti
+      scopecontent: Ambito e contenuto
+      separatedmaterial: Materiali separati
+      structure_or_genealogy: Struttura o genealogia
+      summary: Riepilogo
+      userestrict: Condizioni d'uso
     script_iso15924:
       Adlm: Adlam
       Bali: Balinese
@@ -1664,6 +1697,12 @@ it:
       additional_information: Informazioni aggiuntive
       materials: Materiali
       type_note: Tipo Nota
+    place_role:
+      assoc_country: Paese associato
+      other_assoc: Altro
+      place_of_birth: Luogo di nascita
+      place_of_death: Luogo della morte
+      residence: Residenza
   enumeration_names:
     country_iso_3166: Nazione ISO 3166
     date_calendar: 'Calendario delle date'
