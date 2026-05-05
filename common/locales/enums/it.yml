@@ -811,6 +811,83 @@ it:
       previous: Precedente
     rights_statement_external_document_identifier_type:
       fast: 'Faceted Application of Subject Terminology (Dublin, Ohio: OCLC)'
+      agrovoc: "AGROVOC: dizionario dei sinonimi e contrari multilingue per l'agricoltura. (Roma: APIMONDIA)"
+      allmovie: AllMovie
+      allmusic: AllMusic
+      allocine: AlloCiné
+      amnbo: Biografia nazionale americana online
+      ansi: Numero dell'American National Standards Institute e della National Information Standards
+        Organisation per uno standard ANSI o ANSI/NISO.
+      artsy: Artistica
+      bdusc: Repertorio biografico del Congresso degli Stati Uniti (Congresso degli Stati Uniti)
+      bfi: BFI - British Film Institute
+      bnfcg: 'Catalogo generale della BnF (Parigi: Biblioteca Nazionale di Francia)'
+      cantic: CANTIC (Catalogo delle autorità di nomi e titoli della Catalogna) (Biblioteca della 
+        Catalogna)
+      cgndb: Database dei nomi geografici canadesi (Risorse naturali Canada)
+      danacode: 'Danacode (Bnei Brak, Israele: DANA Systems)'
+      datoses: data.bne.es (Biblioteca Nazionale di Spagna)
+      discogs: Discogs
+      dkfilm: Database dei film del Film Institute danese
+      doi: Identificatore di oggetto digitale
+      ean: International Article Number
+      eidr: 'EIDR: registro degli identificatori di intrattenimento'
+      filmport: filmportal.de
+      findagr: Trova una tomba
+      freebase: Base libera
+      gec: Grande enciclopedia catalana
+      geogndb: Database dei nomi geografici
+      geonames: GeoNames
+      gettytgn: Getty Thesaurus dei nomi geografici online (J. Paul Getty Trust)
+      gettyulan: Elenco sindacale dei nomi degli artisti online (J. Paul Getty Trust)
+      gnd: 'File di autorità comune (Lipsia, Francoforte: Biblioteca nazionale tedesca)'
+      gnis: Sistema informativo sui nomi geografici (GNIS) (United States Geological Survey, Board 
+        on Geographic Names)
+      gtin-14: Numero di identificazione commerciale globale 14 (EAN/UCC-128 o ITF-14)
+      hdl: Maniglia
+      ibdb: IBDB - Database Internet di Broadway
+      idref: "IdRef: l'archivio delle autorità Sudoc (L'agenzia bibliografica per l'istruzione superiore
+        (ABES))"
+      imdb: 'IMDb: database di film su Internet'
+      isan: Numero audiovisivo standard internazionale
+      isbn: Numero del libro standard internazionale
+      isbn-a: Numero di libro standard internazionale (ISBN utilizzabile) (International DOI 
+        Foundation (IDF))
+      isbnre: Elemento registrante ISBN (International Standard Book Number).
+      isil: ISIL (Identificatore standard internazionale per biblioteche e organizzazioni correlate)
+      ismn: Numero musicale standard internazionale
+      isni: Identificatore del nome standard internazionale
+      iso: Numero dell'Organizzazione internazionale per la standardizzazione per uno standard ISO
+      isrc: Codice di registrazione standard internazionale
+      issn: Numero di serie standard internazionale
+      issn-l: Collegamento del numero di serie standard internazionale
+      issue-number: Numero del problema della registrazione audio
+      istc: Codice di testo standard internazionale
+      iswc: Codice dell'opera musicale standard internazionale
+      itar: ITAR (Servizio di importazione e registri delle autorità)
+      kinopo: KinoPoisk = KinoPoisk
+      lccn: Numero di controllo della Biblioteca del Congresso
+      lcmd: 'Divisione manoscritti della Biblioteca del Congresso (Washington, DC: Biblioteca del Congresso)'
+      lcmpt: 'Library of Congress Medium of Performance Thesaurus for Music (LCMPT) (Washington, DC: Library
+        of Congress)'
+      libaus: Biblioteche Australia (Biblioteca nazionale dell'Australia)
+      local: Identificatore definito localmente
+      matrix-number: Numero di matrice della registrazione del suono
+      moma: 'Museo di Arte Moderna (New York: Museo di Arte Moderna)'
+      munzing: Munzinger (Archivio Munzinger)
+      music-plate: Numero di targa musicale dell'editore
+      music-publisher: Numero musicale assegnato dall'editore
+      musicb: MusicBrainz
+      natgazfid: Identificatore del nome della funzione del dizionario geografico nazionale degli 
+        Stati Uniti
+      nga: "Galleria Nazionale d'Arte (Washington DC: Galleria Nazionale d'Arte)"
+      nipo: Numero identificativo delle pubblicazioni ufficiali
+      nndb: NNDB (Database dei nomi notevoli)
+      npg: 'National Portrait Gallery (Londra: National Portrait Gallery)'
+      odnb: Dizionario di biografia nazionale di Oxford (Oxford University Press)
+      opensm: OpenStreetMap
+      orcid: Apri ID ricercatore e collaboratore
+      oxforddnb: Indice biografico di Oxford
     date_label:
       deaccession: Deaccessione
       copyright: Diritto d'autore
@@ -1157,6 +1234,44 @@ it:
       appraisal: Valutazione
       abstract: Astratto
       accessrestrict: Condizioni che regolano l'accesso
+      accruals: Accantonamenti
+      acqinfo: Fonte di acquisizione immediata
+      altformavail: Esistenza e ubicazione delle copie
+      arrangement: Disposizione
+      bibliography: Bibliografia
+      bioghist: Biografico/Storico
+      contact_note: Nota di contatto
+      custodhist: Storia della custodia
+      dimensions: Dimensioni
+      edition: Edizione
+      extent: Estensione
+      fileplan: Piano di file
+      general_context: Contesto generale
+      index: Indice
+      inscription: Iscrizione
+      langmaterial: Linguaggio dei materiali
+      legal_status: status giuridico
+      legalstatus: status giuridico
+      mandate: Mandato
+      materialspec: Dettagli specifici dei materiali
+      note: Nota generale
+      note_bibliography: Bibliografia
+      odd: Generale
+      originalsloc: Esistenza e ubicazione degli originali
+      otherfindaid: Altri strumenti di consultazione
+      physdesc: Descrizione fisica
+      physfacet: Aspetto fisico
+      physloc: Posizione fisica
+      phystech: Caratteristiche fisiche e requisiti tecnici
+      prefercite: Citazione preferita
+      processinfo: Informazioni di registrazione
+      relatedmaterial: Materiali correlati
+      rights_statement: Diritti
+      scopecontent: Ambito e contenuto
+      separatedmaterial: Materiali separati
+      structure_or_genealogy: Struttura o genealogia
+      summary: Riepilogo
+      userestrict: Condizioni d'uso
     script_iso15924:
       Adlm: Adlam
       Bali: Balinese
@@ -1659,6 +1774,53 @@ it:
       additional_information: Informazioni aggiuntive
       materials: Materiali
       type_note: Tipo Nota
+    place_role:
+      assoc_country: Paese associato
+      other_assoc: Altro
+      place_of_birth: Luogo di nascita
+      place_of_death: Luogo della morte
+      residence: Residenza
+    publication_status:
+      approved: Approvato
+      in_process: In corso
+    reference_evaluation:
+      natc: Nessun tentativo di programmazione
+      not_applicable: Non applicabile
+      tr_consistent: Tracce coerenti con le intestazioni
+      tr_inconsistent: Tracce incoerenti con le intestazioni
+    resource_finding_aid_description_rules:
+      aacr: Regole di catalogazione anglo-americane
+      cco: Catalogazione dei beni culturali
+      dacs: 'Descrivere gli archivi: uno standard di contenuto'
+      isadg: Norma internazionale per la descrizione archivistica - Generale
+      rad: Regole per la descrizione archivistica
+    resource_finding_aid_status:
+      completed: Completato
+      in_progress: In corso
+      under_revision: In fase di revisione
+      unprocessed: non elaborato
+    resource_resource_type:
+      collection: Collezione
+      papers: Documenti
+      publications: pubblicazioni
+      records: Registri
+    restriction_type:
+      ColdStorageBrbl: 5 - Altro
+      InProcessSpecColl: 4 - Restrizioni in corso
+      RestrictedCurApprSpecColl: 2 - Restrizione di accesso imposta dal repository
+      RestrictedFragileSpecColl: 3 - Fragile e soggetto a restrizioni
+      RestrictedSpecColl: 1 - Restrizione di accesso imposta dal donatore/università
+    rights_statement_act_restriction:
+      allow: Permettere
+      conditional: Condizionale
+      disallow: Vietare
+    rights_statement_act_type:
+      delete: Eliminare
+      disseminate: Diffondere
+      migrate: Migrare
+      modify: Modificare
+      replicate: Replicare
+      use: Utilizzo
   enumeration_names:
     country_iso_3166: Nazione ISO 3166
     date_calendar: 'Calendario delle date'
