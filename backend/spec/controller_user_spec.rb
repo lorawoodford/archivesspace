@@ -300,39 +300,38 @@ describe 'User controller' do
     end
   end
 
-  describe 'view pui permissions' do
-    context "when the user doesn't have pui permissions" do
-      let(:session_headers) do
-        post '/users/test1/login', params = { "password" => "password", "expiring" => "false" }
-        expect(last_response).to be_ok
+  describe "pui parameter" do
+    context "when pui is false (default)" do
+      it "allows login for a user without view_pui permission" do
+        post "/users/test1/login", {
+          password: 'password',
+          pui: false
+        }
 
-        session_headers = {"HTTP_X_ARCHIVESSPACE_SESSION" => JSON(last_response.body)["session"]}
-      end
-
-      it 'returns false' do
-        resp = get '/users/pui', params = {}, session_headers
-        expect(JSON.parse(resp.body)).to eq (false)
+        expect(last_response.status).to eq(200)
+        expect(JSON(last_response.body)["session"]).not_to be_nil
       end
     end
 
-    context 'when the user has pui permissions' do
-      let(:session_headers) do
-        post "/users/admin/login", params = { "password" => "admin" }
-        expect(last_response).to be_ok
+    context "when pui is true" do
+      it "allows login for a user with view_pui permission" do
+        post "/users/admin/login", {
+          password: 'admin',
+          pui: true
+        }
 
-        session_headers = {"HTTP_X_ARCHIVESSPACE_SESSION" => JSON(last_response.body)["session"]}
+        expect(last_response.status).to eq(200)
+        expect(JSON(last_response["session"])).not_to be_nil
       end
 
-      it "returns true " do
-        resp = get '/users/pui', params = {}, session_headers
-        expect(JSON.parse(resp.body)).to eq (true)
-      end
-    end
+      it "rejects login for a user without view_pui permission" do
+        post "/users/test1/login", {
+          password: 'password',
+          pui: true
+        }
 
-    context 'when no active session' do
-      it "returns no_active_session when no user" do
-        resp = get '/users/pui'
-        expect(JSON.parse(resp.body)).to include('status' => 'no_active_session')
+        expect(last_response.status).to eq(403)
+        expect(JSON(last_response.body)["error"]).to eq("User does not have permission to view the PUI")
       end
     end
   end

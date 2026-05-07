@@ -198,6 +198,10 @@ describe SessionController, type: :controller do
         json = JSON.parse(response.body)
         expect(json['can_access']).to be false
         expect(json['mode']).to be_nil
+      end
+    end
+  end
+
   describe "GET #check_pui_session" do
     before(:each) do
       set_repo($repo)

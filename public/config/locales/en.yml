@@ -29,6 +29,7 @@ en:
     welcome_page_title: ArchivesSpace Public Interface
 
   actions:
+    authenticating: Verifying access
     search: Search
     search_header: Search The Archives
     search_within: Search within results
@@ -223,8 +224,6 @@ en:
 
   login:
     login: Sign In
-    login_fail: Login attempt failed
-    login_success: Login Successful. Redirecting...
     logout: Logout
     username_placeholder: Username
     password_placeholder: Password
