@@ -58,6 +58,7 @@ fr:
     next: Suivant
     previous: Précédent
     digitized: Voir le matériel numérique
+    authenticating: Vérification de l'accès
   page_actions: Page Actions
 
   request:

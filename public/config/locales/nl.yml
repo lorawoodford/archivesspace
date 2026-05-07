@@ -34,6 +34,7 @@ nl:
     staff_link: Alleen voor medewerkers
     next: Volgende
     previous: Vorige
+    authenticating: Toegang verifiëren
   page_actions: Acties op deze pagina
   request:
     email_header: Dank u voor uw aanvraag

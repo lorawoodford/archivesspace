@@ -29,6 +29,7 @@ en:
     welcome_page_title: ArchivesSpace Public Interface
 
   actions:
+    authenticating: Verifying access
     search: Search
     search_header: Search The Archives
     search_within: Search within results

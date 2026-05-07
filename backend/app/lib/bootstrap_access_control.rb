@@ -61,6 +61,8 @@ class ArchivesSpaceService
     self.create_system_user(User.ADMIN_USERNAME, "Administrator", AppConfig[:default_admin_password])
     self.create_group(Group.ADMIN_GROUP_CODE, "Administrators", [User.ADMIN_USERNAME], [])
 
+    self.create_group(Group.PUI_VIEWERS_GROUP_CODE, "PUI Viewers", [User.ADMIN_USERNAME], ['view_pui'])
+    User.where(username: User.ADMIN_USERNAME).update( :is_pui_viewer => 1 )
 
     ## Standard permissions
     Permission.define("administer_system",
@@ -79,6 +81,10 @@ class ArchivesSpaceService
                       "The ability to view any record in the system",
                       :level => "global",
                       :system => true)
+
+    Permission.define("view_pui",
+                      "The ability to view the PUI",
+                      :level => "global")
 
     Permission.define("create_repository",
                       "The ability to create new repositories",
@@ -199,15 +205,6 @@ class ArchivesSpaceService
     Permission.define("view_agent_contact_record_global",
                       "The ability to view contact details for agent records",
                       :implied_by => 'view_agent_contact_record',
-                      :level => "global")
-
-    Permission.define("view_pui",
-                      "The ability to view the PUI",
-                      :level => "repository")
-
-    Permission.define("view_pui_global",
-                      "The ability to view the PUI",
-                      :implied_by => 'view_pui',
                       :level => "global")
 
     Permission.define("manage_vocabulary_record",
@@ -331,11 +328,6 @@ class ArchivesSpaceService
     Group.each do |group|
       next unless ["repository-managers"].include? group.group_code
       group.grant "delete_event_record"
-      group.save
-    end
-
-    Group.each do |group|
-      group.grant "view_pui"
       group.save
     end
   end

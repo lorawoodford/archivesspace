@@ -33,6 +33,7 @@ de:
     next: Nächste
     previous: Vorherige
     digitized: Digitale Inhalte ansehen
+    authenticating: Zugriff überprüfen
   request:
     required: erforderlich
     user_name: Ihr Name

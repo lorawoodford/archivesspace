@@ -80,22 +80,6 @@ class ArchivesSpaceService < Sinatra::Base
     json_response(usernames)
   end
 
-  # Very much WIP so path is intentionally vague until I know what this will actually do
-  Endpoint.get('/users/pui')
-    .description('')
-    .permissions([])
-    .returns([200, "true or false"]) \
-  do
-    if session
-      user = User.find(username: session[:user])
-      raise NotFoundException.new unless user
-
-      json_response(user.permissions.values.flatten.include?('view_pui'))
-    else
-      false
-    end
-  end
-
 
   Endpoint.post('/users/reset-password')
     .description("Initiate a password reset process by sending a one-time token to the user")
@@ -183,11 +167,11 @@ class ArchivesSpaceService < Sinatra::Base
 
       # overwrite whatever is the params with the current admin and groups status
       # to prevent a user from adding themselves to groups or giving themselves admin access
-      current_admin_setting  = user[:is_admin]
+      current_admin_setting = user[:is_admin]
       current_groups_setting = user[:groups]
 
       params[:user][:is_admin] = current_admin_setting
-      params[:user][:groups]   = current_groups_setting
+      params[:user][:groups] = current_groups_setting
     else
       check_admin_access
       user = User.get_or_die(params[:id])
@@ -243,7 +227,8 @@ class ArchivesSpaceService < Sinatra::Base
              "NOTE: Previously this parameter would cause the created session" +
              " to last forever, but this generally isn't what you want.  The parameter" +
              " name is unfortunate, but we're keeping it for backward-compatibility.",
-             :default => true])
+             :default => true],
+             ["pui", BooleanParam, "If true, check PUI access permissions", :default => false])
     .permissions([])
     .no_data(true)
     .returns([200, "Login accepted"],
@@ -254,6 +239,11 @@ class ArchivesSpaceService < Sinatra::Base
     user = AuthenticationManager.authenticate(username, params[:password])
 
     if user
+      # If this is a PUI login, check that the user has PUI viewer access
+      if params[:pui] && !user.can?(:view_pui)
+        halt 403, {"Content-Type" => "application/json"}, [{"error" => "User does not have permission to view the PUI"}.to_json]
+      end
+
       session = create_session_for(username, params[:expiring])
       json_user = User.to_jsonmodel(user)
       json_user.permissions = user.permissions

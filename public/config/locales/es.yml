@@ -39,6 +39,7 @@ es:
     next: Próximo
     digitized: Ver material digital
     previous: Previo
+    authenticating: Verificando el acceso
   page_actions: Acciones de página
 
   request:

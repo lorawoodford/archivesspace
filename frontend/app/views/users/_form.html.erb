@@ -12,7 +12,7 @@
    <%= form.label_and_textfield "department", {:field_opts => {:size => 30, :class => "form-control"}} %>
    <%= form.label_and_textarea "additional_contact" %>
 
-   <hr/>
+   <hr />
 
    <%= form.label_and_textfield "source", { :field_opts => { :readonly => true } } %>
    <%= form.label_and_password "password", {:field_opts => {:size => 30, :class => "form-control"}, :required => @user.id ? :conditionally : true} %>
@@ -26,6 +26,10 @@
      <%= form.label_and_boolean "is_active_user" %>
    <% else %>
      <%= form.hidden_input "is_active_user", 1 %>
+   <% end %>
+
+   <% if AppConfig[:pui_require_authentication] && user_can?('manage_users') && !@self_edit %>
+     <%= form.label_and_boolean "is_pui_viewer" %>
    <% end %>
 
 </fieldset>

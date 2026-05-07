@@ -9,10 +9,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = JSONModel(:group).all
-    # Hide if functionality not on.  Or do we want to show it by have it inactive/uneditable a la enumeration values?
-    if AppConfig[:pui_require_authentication] == false
-      @groups = @groups.reject { |grp| grp.group_code == 'repository-pui-viewers' }
-    end
   end
 
 

@@ -24,6 +24,7 @@ pt:
     request: Solicitação
     print-generating: Gerando
     collection_overview: Visão Geral da Coleção
+    authenticating: Verificando o acesso
   search_results:
     highlighting:
       found_in: Encontrado em

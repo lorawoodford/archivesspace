@@ -50,17 +50,25 @@ class ApplicationController < ActionController::Base
     return unless AppConfig[:pui_require_authentication]
     return unless session[:pui_username]
 
-    uri = URI("#{AppConfig[:backend_url]}/users/pui")
+    uri = URI("#{AppConfig[:backend_url]}/users/current-user")
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     request['X-ArchivesSpace-Session'] = session[:session]
 
     response = http.request(request)
 
-    if response.code == '200' && !JSON.parse(response.body)
-      flash.now[:error] = "User `#{session[:username]}` does not have permission to view the PUI."
-      render 'shared/login'
-    elsif response.code != '200'
+    parsed_body = begin
+      JSON.parse(response.body)
+    rescue JSON::ParserError
+      nil
+    end
+
+    if response.code == '200' && parsed_body
+      unless parsed_body['is_pui_viewer']
+        flash.now[:error] = "User `#{session[:pui_username]}` does not have permission to view the PUI."
+        render 'shared/login'
+      end
+    else
       session[:session] = nil
       render 'shared/login'
     end

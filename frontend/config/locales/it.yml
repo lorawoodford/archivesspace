@@ -568,3 +568,5 @@ it:
     heading: Benvenuto in ArchivesSpace
   skipnav:
     main_content: Passa al contenuto principale
+  user:
+    is_pui_viewer: Visualizzatore PUI

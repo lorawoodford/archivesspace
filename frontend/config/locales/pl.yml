@@ -1397,6 +1397,7 @@ pl:
     active: prawda
     inactive: fałsz
     source: Uwierzytelnianie
+    is_pui_viewer: Przeglądarka PUI
   user_defined:
     _frontend:
       action:
