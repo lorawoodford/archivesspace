@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
 
   set_access_control "manage_repository" => [:new, :index, :edit, :create, :update, :show, :delete]
 
+
   def new
     @group = JSONModel(:group).new._always_valid!
   end

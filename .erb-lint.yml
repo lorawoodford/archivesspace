@@ -1,4 +1,0 @@
----
-linters:
-  SelfClosingTag:
-    enabled: false

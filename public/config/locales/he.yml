@@ -4,3 +4,9 @@ he:
       loading: טְעִינָה
   actions:
     authenticating: מאמת גישה
+  login:
+    login: היכנס
+    logout: התנתק
+    username_placeholder: שם משתמש
+    password_placeholder: סִיסמָה
+    required: דָרוּשׁ

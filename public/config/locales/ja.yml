@@ -513,4 +513,9 @@ ja:
 
   languages:
     select: 言語を選択する
-  
+  login:
+    login: サインイン
+    logout: ログアウト
+    username_placeholder: ユーザー名
+    password_placeholder: パスワード
+    required: 必須

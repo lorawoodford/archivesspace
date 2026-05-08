@@ -588,3 +588,9 @@ es:
 
   languages:
     select: Seleccione el idioma
+  login:
+    login: Registrarse
+    logout: Salir
+    username_placeholder: Nombre de usuario
+    password_placeholder: Contraseña
+    required: Campos requeridos

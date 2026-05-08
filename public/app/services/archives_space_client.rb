@@ -97,7 +97,6 @@ class ArchivesSpaceClient
     results.first
   end
 
-
   def search_repository( base, repo_id, page = 1, search_opts = {})
     search_opts = DEFAULT_SEARCH_OPTS.merge(search_opts)
 

@@ -239,7 +239,6 @@ class ArchivesSpaceService < Sinatra::Base
     user = AuthenticationManager.authenticate(username, params[:password])
 
     if user
-      # If this is a PUI login, check that the user has PUI viewer access
       if params[:pui] && !user.can?(:view_pui)
         halt 403, {"Content-Type" => "application/json"}, [{"error" => "User does not have permission to view the PUI"}.to_json]
       end

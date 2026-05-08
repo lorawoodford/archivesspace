@@ -118,8 +118,7 @@ class Repository < Sequel::Model(:repository)
                          :group_code => "repository-viewers",
                          :description => I18n.t("group.default_group_names.repository_viewers", :repo_code => repo_code),
                          :grants_permissions => ["view_repository"]
-                       }
-                      ]
+                       }]
 
     RequestContext.open(:repo_id => self.id) do
       standard_groups.each do |group_data|

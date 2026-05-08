@@ -356,6 +356,7 @@ class ArchivesSpaceService
                       ["mediate_edits"])
   end
 
+
   set_up_base_permissions
   create_search_user
   create_public_user

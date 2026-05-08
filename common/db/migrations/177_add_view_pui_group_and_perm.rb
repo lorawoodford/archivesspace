@@ -4,7 +4,7 @@ Sequel.migration do
 
   up do
     self.transaction do
-      # add permission for viewing pui
+      $stderr.puts("Adding view_pui permission")
       view_pui_permission = self[:permission].filter(permission_code: 'view_pui').get(:id)
 
       if !view_pui_permission
@@ -16,9 +16,8 @@ Sequel.migration do
                                                        user_mtime: Time.now)
       end
 
+      # grant new permission to group if it exists (it probably doesn't)
       pui_viewer_group = self[:group].filter(group_code: 'pui-viewers').get(:id)
-
-      # grant new permission to group if it exists
       if view_pui_permission && pui_viewer_group
         self[:group_permission].insert(permission_id: view_pui_permission, group_id: pui_viewer_group[:id])
       end

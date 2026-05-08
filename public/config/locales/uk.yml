@@ -530,4 +530,9 @@ uk:
     archivesspace_home_html: Відвідайте <a href='http://archivesspace.org'>ArchivesSpace.org</a>
   languages:
     select: Виберіть мову
-  
+  login:
+    login: Увійти
+    logout: Вийти
+    username_placeholder: Ім'я користувача
+    password_placeholder: Пароль
+    required: потрібно
